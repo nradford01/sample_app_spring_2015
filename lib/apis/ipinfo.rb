@@ -8,13 +8,11 @@ class Ipinfo
   end
 
   def get_coordinates()
-    response = self.get_info(:json)
-    response['loc'].split(',')
+    self.get_info(:json)['loc'].split(',')
   end
 
   def get_city()
-    response = self.get_info(:json)
-    response['city']
+    self.get_info(:json)['city']
   end
 
 end
