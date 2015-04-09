@@ -9,4 +9,22 @@ module ApplicationHelper
       "#{page_title} | #{base_title}"
     end
   end
+
+  def get_weather_widget()
+    ipinfo = Ipinfo.new
+    coordinates = ipinfo.get_coordinates()
+
+    query = {
+      lat: coordinates.first,
+      lon: coordinates.last,
+      name: ipinfo.get_city
+    }.to_query
+    
+    tag('iframe', id:          "forecast_embed", 
+                  type:        "text/html",
+                  frameborder: "0",
+                  height:      "245",
+                  width:       "100%",
+                  src:         "http://forecast.io/embed/##{query}")
+  end
 end
